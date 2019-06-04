@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "TabBarController.h"
-#import "FYHomeVC.h"
+#import "GGXXYYHomeVC.h"
 //import <UMSocialCore/UMSocialCore.h>
 #import <UShareUI/UShareUI.h>
 #import "UMessage.h"
@@ -52,7 +52,7 @@
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:newUserAgent, @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
     
-    FYHomeVC * vc = [[FYHomeVC alloc] init];
+    GGXXYYHomeVC * vc = [[GGXXYYHomeVC alloc] init];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
     
@@ -105,7 +105,7 @@
     //        [[zkSignleTool shareTool] uploadDeviceTokenWith:[zkSignleTool shareTool].deviceToken];
     //    }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-         FYHomeVC* vc = (FYHomeVC *)self.window.rootViewController;
+         GGXXYYHomeVC* vc = (GGXXYYHomeVC *)self.window.rootViewController;
         [vc.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"updateiosdevice('%@');",token]];
     });
 }
@@ -179,7 +179,7 @@
     
     if ([dict.allKeys containsObject:@"ao"] && [[NSString stringWithFormat:@"%@",dict[@"ao"]] isEqualToString:@"go_url"]) {
         
-        FYHomeVC * vc = (FYHomeVC *)self.window.rootViewController;
+        GGXXYYHomeVC * vc = (GGXXYYHomeVC *)self.window.rootViewController;
         [vc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:dict[@"ul"]]]];
         
     }
@@ -222,7 +222,7 @@
                                                              self.window.rootViewController = tabbar;
                                                              [self.window makeKeyAndVisible];
                                                          }else {
-                                                             FYHomeVC * vc = [[FYHomeVC alloc] init];
+                                                             GGXXYYHomeVC * vc = [[GGXXYYHomeVC alloc] init];
                                                              self.window.rootViewController = vc;
                                                              [self.window makeKeyAndVisible];
                                                          }

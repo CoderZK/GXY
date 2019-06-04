@@ -1,16 +1,16 @@
 //
-//  MineVC.h
+//  GGXXYYXieYiVC.h
 //  SUNWENTAOAPP
 //
-//  Created by GGXXYY on 2018/12/8.
+//  Created by GGXXYY on 2018/12/11.
 //  Copyright © 2018年 张坤. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MineVC : BaseTableViewController
+@interface GGXXYYXieYiVC : BaseViewController
 
 @end
 

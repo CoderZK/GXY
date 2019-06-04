@@ -1,8 +1,8 @@
 //
-//  MineVC.h
+//  GGXXYYMineGouWuListTVC.h
 //  SUNWENTAOAPP
 //
-//  Created by GGXXYY on 2018/12/8.
+//  Created by GGXXYY on 2018/12/20.
 //  Copyright © 2018年 张坤. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MineVC : BaseTableViewController
+@interface GGXXYYMineGouWuListTVC : BaseTableViewController
 
 @end
 

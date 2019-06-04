@@ -2,17 +2,17 @@
 //  HomeVC.m
 //  SUNWENTAOAPP
 //
-//  Created by FY on 2018/12/8.
+//  Created by GXYAPP on 2018/12/8.
 //  Copyright © 2018年 张坤. All rights reserved.
 //
 
 #import "HomeVC.h"
-#import "FYHomeCell.h"
-#import "FYHomeModel.h"
+#import "GGXXYYHomeCell.h"
+#import "GGXXYYHomeModel.h"
 #import "NewsVC.h"
-#import "FYGouWuChe.h"
-#import "FYGoodDetailTVC.h"
-#import "FYSearchTVC.h"
+#import "GGXXYYGouWuChe.h"
+#import "GGXXYYGoodDetailTVC.h"
+#import "GGXXYYSearchTVC.h"
 @interface HomeVC()<SDCycleScrollViewDelegate,UITabBarControllerDelegate>
 @property(nonatomic,strong)SDCycleScrollView *sdcycView;
 @property (nonatomic , strong)UIView * headView;
@@ -34,7 +34,7 @@
     [self setHeadView];
     self.navigationItem.title = @"首页";
     self.tableView.backgroundColor =[UIColor groupTableViewBackgroundColor];
-    [self.tableView registerNib:[UINib nibWithNibName:@"FYHomeCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GGXXYYHomeCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     FMDatabase * db = [FMDBSingle shareFMDB].fd;
     [db open];
 //    NSString *sql = [NSString stringWithFormat:@"update kk_home set desTwo = '%@' where ID = 1",@"商品名称:LEGO乐高 建筑系列21033 芝加哥 成人粉丝拼装建筑积木玩具收藏\n品   牌:LEGO/乐高\n产   地:\n玩具类型:创意\n使用年龄:12-14岁"]; ;
@@ -49,7 +49,7 @@
         
     } handleBtn:^{
         
-        FYSearchTVC * vc =[[FYSearchTVC alloc] initWithTableViewStyle:UITableViewStyleGrouped];
+        GGXXYYSearchTVC * vc =[[GGXXYYSearchTVC alloc] initWithTableViewStyle:UITableViewStyleGrouped];
         vc.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:vc animated:YES]; 
     }];
@@ -59,7 +59,7 @@
     
     FMResultSet *result = [db executeQuery:@"select * from 'kk_home' "];
         while ([result next]) {
-            FYHomeModel *person = [FYHomeModel new];
+            GGXXYYHomeModel *person = [GGXXYYHomeModel new];
             person.ID = [result intForColumn:@"ID"];
             person.desTwo = [result stringForColumn:@"desTwo"];
             person.title = [result stringForColumn:@"title"];
@@ -131,8 +131,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
   
-    FYHomeCell * cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    FYHomeModel * model = self.dataArray[indexPath.row];
+    GGXXYYHomeCell * cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    GGXXYYHomeModel * model = self.dataArray[indexPath.row];
     cell.imgV.image = [UIImage imageNamed: [NSString stringWithFormat:@"k%ld",indexPath.row+1]];
     cell.moneyLB.text =  [NSString stringWithFormat:@"￥%.2f",model.price];
     cell.titleLB.text = model.title;
@@ -143,9 +143,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    FYHomeModel * model = self.dataArray[indexPath.row];
+    GGXXYYHomeModel * model = self.dataArray[indexPath.row];
     
-    FYGoodDetailTVC * vc =[[FYGoodDetailTVC alloc] init];
+    GGXXYYGoodDetailTVC * vc =[[GGXXYYGoodDetailTVC alloc] init];
     vc.index = indexPath.row;
     vc.hidesBottomBarWhenPushed = YES;
     vc.model = model;
@@ -160,9 +160,9 @@
     
    BaseNavigationController * vc = ((BaseNavigationController *)viewController);
    
-    if (([[vc.childViewControllers lastObject] isKindOfClass:[NewsVC class]] || [[vc.childViewControllers lastObject] isKindOfClass:[FYGouWuChe class]])&& ![FYSignleTool shareTool].isLogin) {
+    if (([[vc.childViewControllers lastObject] isKindOfClass:[NewsVC class]] || [[vc.childViewControllers lastObject] isKindOfClass:[GGXXYYGouWuChe class]])&& ![GGXXYYSignleTool shareTool].isLogin) {
 //        self.tabBarController.selectedIndex = 0;
-        FYLoginVC * vc = [[FYLoginVC alloc] init];
+        GGXXYYLoginVC * vc = [[GGXXYYLoginVC alloc] init];
         [self presentViewController:vc animated:YES completion:nil];
         return NO;
     }else {

@@ -11,7 +11,7 @@
 #import "HomeVC.h"
 #import "MineVC.h"
 #import "NewsVC.h"
-#import "FYGouWuChe.h"
+#import "GGXXYYGouWuChe.h"
 
 
 @interface TabBarController ()
@@ -39,7 +39,7 @@
     NSArray *imgArr=@[@"home",@"gouwuche",@"mine"];
     NSArray *selectedImgArr=@[@"home1",@"gouwuche1",@"mine1"];
     NSArray *barTitleArr=@[@"首页",@"购物车",@"我的"];
-    NSArray *className=@[@"HomeVC",@"FYGouWuChe",@"MineVC"];
+    NSArray *className=@[@"HomeVC",@"GGXXYYGouWuChe",@"MineVC"];
     NSMutableArray *arr=[[NSMutableArray alloc] init];
     for (int i=0; i<className.count; i++)
     {

@@ -2,19 +2,19 @@
 //  MineVC.m
 //  SUNWENTAOAPP
 //
-//  Created by FY on 2018/12/8.
+//  Created by GGXXYY on 2018/12/8.
 //  Copyright © 2018年 张坤. All rights reserved.
 //
 
 #import "MineVC.h"
-#import "FYMineCell.h"
-#import "FYLoginVC.h"
-#import "FYRenZhengVC.h"
-#import "FYWenTiVC.h"
-#import "FYhelpVC.h"
-#import "FYAddressTVC.h"
-#import "FYOutVC.h"
-#import "FYMineGouWuListTVC.h"
+#import "GGXXYYMineCell.h"
+#import "GGXXYYLoginVC.h"
+#import "GGXXYYRenZhengVC.h"
+#import "GGXXYYWenTiVC.h"
+#import "GGXXYYhelpVC.h"
+#import "GGXXYYAddressTVC.h"
+#import "GGXXYYOutVC.h"
+#import "GGXXYYMineGouWuListTVC.h"
 #import "NewsVC.h"
 @interface MineVC()
 @property(nonatomic,strong)NSArray *dataArray;
@@ -29,15 +29,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([FYSignleTool shareTool].isLogin) {
-        _lb.text = [NSString stringWithFormat:@"用户名:%@",[FYSignleTool shareTool].session_uid];;
+    if ([GGXXYYSignleTool shareTool].isLogin) {
+        _lb.text = [NSString stringWithFormat:@"用户名:%@",[GGXXYYSignleTool shareTool].session_uid];;
         self.headV.mj_h = 60;
         self.tableView.tableHeaderView = self.headV;
         self.tableView.tableFooterView = nil;
         //        FMDatabase * db = [FMDBSingle shareFMDB].fd;
         //        BOOL isOpen = [db open];
         //        if (isOpen) {
-        //            NSString * sql = [NSString stringWithFormat:@"select *from 'kk_users' where name = %@ ",[FYSignleTool shareTool].session_uid];
+        //            NSString * sql = [NSString stringWithFormat:@"select *from 'kk_users' where name = %@ ",[GGXXYYSignleTool shareTool].session_uid];
         //            FMResultSet * result = [db executeQuery:sql];
         //
         //            while ([result next]) {
@@ -72,7 +72,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"FYMineCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GGXXYYMineCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.navigationItem.title = @"我的";
@@ -84,7 +84,7 @@
         
     } handleBtn:^{
         
-        FYOutVC * vc =[[FYOutVC alloc] init];
+        GGXXYYOutVC * vc =[[GGXXYYOutVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }];
@@ -105,7 +105,7 @@
     lb.textAlignment = NSTextAlignmentCenter;
     [self.headV addSubview:lb];
     self.lb = lb;
-    lb.text = [NSString stringWithFormat:@"用户名:%@",[FYSignleTool shareTool].session_uid];;
+    lb.text = [NSString stringWithFormat:@"用户名:%@",[GGXXYYSignleTool shareTool].session_uid];;
     self.tableView.tableHeaderView = self.headV;
     
 }
@@ -133,7 +133,7 @@
 
 - (void)clickAction:(UIButton *)button {
     
-    FYLoginVC * vc = [[FYLoginVC alloc] init];
+    GGXXYYLoginVC * vc = [[GGXXYYLoginVC alloc] init];
     [self presentViewController:vc animated:YES completion:nil];
     
 }
@@ -153,7 +153,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    FYMineCell * cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    GGXXYYMineCell * cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.leftLB.text = self.dataArray[indexPath.row];
     return cell;
     
@@ -161,26 +161,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (![FYSignleTool shareTool].isLogin) {
+    if (![GGXXYYSignleTool shareTool].isLogin) {
         [self gotoLoginVC];
         return;
     }
     if (indexPath.row == 0) {
         
-        FYMineGouWuListTVC * vc =[[FYMineGouWuListTVC alloc] init];
+        GGXXYYMineGouWuListTVC * vc =[[GGXXYYMineGouWuListTVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         
     }else if (indexPath.row == 1) {
-        FYAddressTVC  * vc = [[FYAddressTVC alloc] init];
+        GGXXYYAddressTVC  * vc = [[GGXXYYAddressTVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }else  if (indexPath.row == 2) {
-        FYWenTiVC  * vc = [[FYWenTiVC alloc] init];
+        GGXXYYWenTiVC  * vc = [[GGXXYYWenTiVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row == 3) {
-        FYhelpVC  * vc = [[FYhelpVC alloc] init];
+        GGXXYYhelpVC  * vc = [[GGXXYYhelpVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }else {

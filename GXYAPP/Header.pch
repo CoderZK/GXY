@@ -45,8 +45,8 @@
 #import "BaseTableViewController.h"
 #import "BaseTableViewHeaderFooterView.h"
 #import "FMDBSingle.h"
-#import "FYSignleTool.h"
-#import "FYLoginVC.h"
-#import "FYHomeModel.h"
+#import "GGXXYYSignleTool.h"
+#import "GGXXYYLoginVC.h"
+#import "GGXXYYHomeModel.h"
 
 #endif /* Header_h */

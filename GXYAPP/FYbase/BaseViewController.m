@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-//#import "FYLoginVC.h"
+//#import "GGXXYYLoginVC.h"
 #import <Photos/Photos.h>
 
 typedef void (^Nav)(UIButton *);
@@ -150,7 +150,7 @@ typedef void (^Nav2)();
 
 - (void)gotoLoginVC {
 
-    FYLoginVC * vc =[[FYLoginVC alloc] init];
+    GGXXYYLoginVC * vc =[[GGXXYYLoginVC alloc] init];
     [self presentViewController:vc animated:YES completion:nil];
 
 

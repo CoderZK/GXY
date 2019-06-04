@@ -7,19 +7,19 @@
 //
 
 #import "NewsVC.h"
-#import "FYLoginVC.h"
-#import "FYNewsCell.h"
-#import "FYHomeModel.h"
+#import "GGXXYYLoginVC.h"
+#import "GGXXYYNewsCell.h"
+#import "GGXXYYHomeModel.h"
 
 @interface NewsVC()
-@property(nonatomic,strong)NSMutableArray<FYHomeModel *> *dataArray;
+@property(nonatomic,strong)NSMutableArray<GGXXYYHomeModel *> *dataArray;
 
 @end
 
 
 @implementation NewsVC
 
-- (NSMutableArray<FYHomeModel *> *)dataArray {
+- (NSMutableArray<GGXXYYHomeModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }
@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerNib:[UINib nibWithNibName:@"FYNewsCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GGXXYYNewsCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.navigationItem.title = @"我的消息";
@@ -44,13 +44,13 @@
 
 - (void)getData {
     
-    NSString * sql = [NSString stringWithFormat:@"select *from kk_news where name = '%@'",[FYSignleTool shareTool].session_uid];
+    NSString * sql = [NSString stringWithFormat:@"select *from kk_news where name = '%@'",[GGXXYYSignleTool shareTool].session_uid];
     FMDatabase * db = [FMDBSingle shareFMDB].fd;
     BOOL isOpen = [db open];
     if (isOpen) {
         FMResultSet * result = [db executeQuery:sql];
         while ([result next]) {
-            FYHomeModel * model = [[FYHomeModel alloc] init];
+            GGXXYYHomeModel * model = [[GGXXYYHomeModel alloc] init];
             model.title = [result stringForColumn:@"name"];
             model.content = [result stringForColumn:@"content"];
             [self.dataArray addObject:model];
@@ -77,7 +77,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    FYNewsCell * cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    GGXXYYNewsCell * cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.titleLB.text = self.dataArray[indexPath.row].title;
     cell.contentLB.text = self.dataArray[indexPath.row].content;
     return cell;
