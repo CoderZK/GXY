@@ -1,63 +1,63 @@
 //
-//  TabBarController.m
-//  Elem1
+//  GGXXYYTabBarController.m
+//  GXYAPP
 //
-//  Created by sny on 15/9/17.
-//  Copyright (c) 2015年 cznuowang. All rights reserved.
+//  Created by zk on 2019/6/6.
+//  Copyright © 2019 张坤. All rights reserved.
 //
 
-#import "TabBarController.h"
+#import "GGXXYYTabBarController.h"
 #import "BaseViewController.h"
-#import "HomeVC.h"
-#import "MineVC.h"
-#import "NewsVC.h"
-#import "YJGouWuChe.h"
+#import "GGXXYYHomeJiaTVC.h"
+#import "GGXXYYMineVC.h"
+#import "GGXXYYNewsVC.h"
+#import "GGXXYYGouWuChe.h"
 
 
-@interface TabBarController ()
+@interface GGXXYYTabBarController ()
 {
     BaseNavigationController * _mineNavi;
 }
 @end
 
-@implementation TabBarController
+@implementation GGXXYYTabBarController
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-   
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSArray *imgArr=@[@"home",@"news",@"gouwuche",@"mine"];
-    NSArray *selectedImgArr=@[@"home1",@"news1",@"gouwuche1",@"mine1"];
-    NSArray *barTitleArr=@[@"首页",@"消息",@"购物车",@"我的"];
-    NSArray *className=@[@"HomeVC",@"NewsVC",@"YJGouWuChe",@"MineVC"];
+    NSArray *imgArr=@[@"home",@"gouwuche",@"mine"];
+    NSArray *selectedImgArr=@[@"home1",@"gouwuche1",@"mine1"];
+    NSArray *barTitleArr=@[@"首页",@"购物车",@"我的"];
+    NSArray *className=@[@"GGXXYYHomeJiaTVC",@"GGXXYYNewsVC",@"GGXXYYMineVC"];
     NSMutableArray *arr=[[NSMutableArray alloc] init];
     for (int i=0; i<className.count; i++)
     {
         NSString *str=[className objectAtIndex:i];
         BaseViewController *vc = nil;
         
-        //此处创建控制器要根据自己的情况确定是否带tableView 
+        //此处创建控制器要根据自己的情况确定是否带tableView
         
-//        if (i== 0)
-//        {
-//           vc=[[NSClassFromString(str) alloc] initWithTableViewStyle:UITableViewStylePlain];
-//        }
-//        else
-//        {
-            vc=[[NSClassFromString(str) alloc] initWithTableViewStyle:UITableViewStyleGrouped];
-//        }
+        //        if (i== 0)
+        //        {
+        //           vc=[[NSClassFromString(str) alloc] initWithTableViewStyle:UITableViewStylePlain];
+        //        }
+        //        else
+        //        {
+        vc=[[NSClassFromString(str) alloc] init];
+        //        }
         
-
+        
         NSString *str1=[imgArr objectAtIndex:i];
         
         NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
@@ -78,8 +78,8 @@
         BaseNavigationController *nav=[[BaseNavigationController alloc] initWithRootViewController:vc];
         [arr addObject:nav];
     }
- 
- 
+    
+    
     self.viewControllers=arr;
     _mineNavi = arr.lastObject;
     self.tabBar.barTintColor = [UIColor whiteColor];

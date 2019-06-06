@@ -13,7 +13,6 @@
 #import <UMSocialCore/UMSocialCore.h>
 #import <UShareUI/UShareUI.h>
 #import <AddressBook/AddressBook.h>
-#import "GGXXYYLinkModel.h"
 #import <Contacts/Contacts.h>
 
 
@@ -46,8 +45,10 @@
     web.backgroundColor = [UIColor whiteColor];
     [web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URLURL]]];
     web.scrollView.bounces = NO;
+    
     web.backgroundColor = [UIColor colorWithRed:247/255.0 green:247/255.0 blue:247/255.0 alpha:1.0];
-    //    web.backgroundColor =[UIColor redColor];
+//    web.backgroundColor =[UIColor redColor];
+    
     self.backV = [[UIView alloc] initWithFrame:CGRectMake(WWWWW - 60 - 10, HHHHHH  - 15 - 60 - 49 - 120 , 60, 180)];
     if (SSSSBarH > 20) {
         self.backV.frame = CGRectMake(WWWWW - 60 - 10, HHHHHH  - 34 - 15 - 60 - 49 - 120 , 70, 180);
@@ -120,20 +121,29 @@
             [self.webView goBack];
         }
     }else if (button.tag == 1) {
-//        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URLURL]]];
-          [self fetchAddressBookOnIOS9AndLater];
-        if ([CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusAuthorized) {
-            NSDictionary * dict = @{@"code":@(1),@"data":[self.dataArray subarrayWithRange:NSMakeRange(0, 6)]};
-            NSString * atrr =  [self convertToJsonDataWithDict:dict];
-            NSLog(@"\n====%@",atrr);
-            [SVProgressHUD showSuccessWithStatus:atrr];
-        }else {
-            NSDictionary * dict = @{@"code":@(-1),@"data":@[]};
-            NSString * atrr =  [self convertToJsonDataWithDict:dict];
-            NSLog(@"\n====%@",atrr);
-            [SVProgressHUD showSuccessWithStatus:atrr];
-            
-        }
+
+//        [self shareWithSetPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_QQ)] withUrl:@"" shareModel:nil];
+        
+        
+        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URLURL]]];
+        
+//        
+//        [self shareWithSetPreDefinePlatforms:nil withArr:@[@"123",@"456"]];
+//        return;
+//
+//          [self fetchAddressBookOnIOS9AndLater];
+//        if ([CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusAuthorized) {
+//            NSDictionary * dict = @{@"code":@(1),@"data":[self.dataArray subarrayWithRange:NSMakeRange(0, 6)]};
+//            NSString * atrr =  [self convertToJsonDataWithDict:dict];
+//            NSLog(@"\n====%@",atrr);
+//            [SVProgressHUD showSuccessWithStatus:atrr];
+//        }else {
+//            NSDictionary * dict = @{@"code":@(-1),@"data":@[]};
+//            NSString * atrr =  [self convertToJsonDataWithDict:dict];
+//            NSLog(@"\n====%@",atrr);
+//            [SVProgressHUD showSuccessWithStatus:atrr];
+//
+//        }
 
     }
 }
@@ -300,7 +310,7 @@
         
         if ([CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusAuthorized) {
             //允许访问
-            NSDictionary * dict = @{@"code":@(1),@"data":[self.dataArray subarrayWithRange:NSMakeRange(0, 6)]};
+            NSDictionary * dict = @{@"code":@(1),@"data":self.dataArray};
             return [weakSelf convertToJsonDataWithDict:dict];
         }else {
             //不允许访问
@@ -360,10 +370,16 @@
 }
 
 - (void)shareWithSetPreDefinePlatforms:(NSArray *)platforms withArr:(NSArray *)arr {
+    
+    
+    
     [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_QQ)]];
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
         [self shareImageAndTextToPlatformType:platformType withArr:arr];
     }];
+    
+
+    
 }
 
 
@@ -371,7 +387,7 @@
 - (void)shareImageAndTextToPlatformType:(UMSocialPlatformType)platformType withArr:(NSArray *)arr
 {
     NSString * url = @"";
-    NSString *title = @"卡有汇";
+    NSString *title = @"共享用";
     NSString * logoStr = @"";
     NSString *descStr = @"最好的app等你来玩!";
     if (arr.count > 0) {

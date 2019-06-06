@@ -17,15 +17,18 @@
 //#import <AlipaySDK/AlipaySDK.h>
 #import <UserNotifications/UserNotifications.h>
 //推送
-#define UMKey @"5ba076ecf1f5563fef000179"
+#define UMKey @"5ce3d9d50cafb213130006e0"
 //友盟安全密钥//quvss8rcpv3jahqyajgeuspa6o1vdeqr
 #define SinaAppKey @"102135063"
 #define SinaAppSecret @"47a31952aed883dc13cdccaf9b30df0d"
 #define QQAppID @"101504727"
 #define QQAppKey @"2e7928e5d1e2974eb06a35fa408e0950"
-#define WXAppID @"wxcb65aa46d04ad49b"
-#define WXAppSecret @"e44bf1d172e7b6a4638e8ecc63bb80e1"
+#define WXAppID @"wxe68b61e47e500548"
+#define WXAppSecret @"96405f2eddb5e6cd8e6e01c87bbda8fb"
 
+//#define UMKey @"5ba076ecf1f5563fef000179"
+//#define WXAppID @"wxcb65aa46d04ad49b"
+//#define WXAppSecret @"e44bf1d172e7b6a4638e8ecc63bb80e1"
 
 
 @interface AppDelegate ()
@@ -40,7 +43,11 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-
+    GGXXYYHomeVC * vc = [[GGXXYYHomeVC alloc] init];
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+    
+    
     [[UMSocialManager defaultManager] setUmSocialAppkey:UMKey];
     
     [self configUSharePlatforms];
@@ -52,11 +59,12 @@
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:newUserAgent, @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
     
-    GGXXYYHomeVC * vc = [[GGXXYYHomeVC alloc] init];
-    self.window.rootViewController = vc;
+ 
+    TabBarController *tabbar = [[TabBarController alloc] init];
+    self.window.rootViewController = tabbar;
     [self.window makeKeyAndVisible];
-    
-    [self updateApp];
+
+//    [self updateApp];
     
     return YES;
 }
@@ -189,7 +197,7 @@
 
 
 - (void)updateApp {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",@"1445514961"]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",@"1467161205"]];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     [request setHTTPMethod:@"POST"];

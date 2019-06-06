@@ -49,4 +49,8 @@
 #import "GGXXYYLoginVC.h"
 #import "GGXXYYHomeModel.h"
 
+#import <UMSocialCore/UMSocialCore.h>
+#import <UShareUI/UShareUI.h>
+#import "zkSignleTool.h"
+#import "zkLoginVC.h"
 #endif /* Header_h */
