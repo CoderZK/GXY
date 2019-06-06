@@ -64,7 +64,7 @@
     self.window.rootViewController = tabbar;
     [self.window makeKeyAndVisible];
 
-//    [self updateApp];
+    [self updateApp];
     
     return YES;
 }

@@ -1122,7 +1122,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gongxiangyong.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ggxxyydev;
+				PROVISIONING_PROFILE_SPECIFIER = gxyDev;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 arm64e armv7s";
 			};
@@ -1133,10 +1133,10 @@
 			baseConfigurationReference = FFD61ED9E98CCDE407DA9ACB /* Pods-GXYAPP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZSL4MW2WKS;
 				ENABLE_BITCODE = YES;
 				GCC_PREFIX_HEADER = GXYAPP/Header.pch;
 				INFOPLIST_FILE = GXYAPP/Info.plist;
@@ -1151,7 +1151,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gongxiangyong.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = gxyDis;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 arm64e armv7s";
 			};
