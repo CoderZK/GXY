@@ -1120,9 +1120,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GXYAPP/UMessage_Sdk_1.3.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gongxiangyong.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GGXXYY.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = gxyDev;
+				PROVISIONING_PROFILE_SPECIFIER = GGXXYYdev;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 arm64e armv7s";
 			};
@@ -1149,9 +1149,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GXYAPP/UMessage_Sdk_1.3.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gongxiangyong.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GGXXYY.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = gxyDis;
+				PROVISIONING_PROFILE_SPECIFIER = GGXXYYdis;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 arm64e armv7s";
 			};

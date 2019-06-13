@@ -51,7 +51,7 @@
     [[UMSocialManager defaultManager] setUmSocialAppkey:UMKey];
     
     [self configUSharePlatforms];
-    [self initUment:launchOptions];
+//    [self initUment:launchOptions];
     
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
@@ -76,128 +76,128 @@
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:SinaAppKey  appSecret:SinaAppSecret redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
 }
 
-- (void)initUment:(NSDictionary *)launchOptions{
-    [UMessage startWithAppkey:UMKey launchOptions:launchOptions httpsEnable:YES];
-    [UMessage registerForRemoteNotifications];
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    center.delegate=self;
-    UNAuthorizationOptions types10=UNAuthorizationOptionBadge|  UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
-    [center requestAuthorizationWithOptions:types10     completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        if (granted) {
-            //点击允许
-            //这里可以添加一些自己的逻辑
-        } else {
-            //点击不允许
-            //这里可以添加一些自己的逻辑
-        }
-    }];
-    [UMessage setBadgeClear:NO];
-    //打开日志，方便调试
-    [UMessage setLogEnabled:YES];
-}
-
-
-//在用户接受推送通知后系统会调用
--(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    [UMessage registerDeviceToken:deviceToken];
-    //2.获取到deviceToken
-    NSString *token = [[[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    //将deviceToken给后台
-    NSLog(@"send_token:%@",token);
-    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"token"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    //    [zkSignleTool shareTool].deviceToken = token;
-    //    if ([zkSignleTool shareTool].isLogin) {
-    //        [[zkSignleTool shareTool] uploadDeviceTokenWith:[zkSignleTool shareTool].deviceToken];
-    //    }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-         GGXXYYHomeVC* vc = (GGXXYYHomeVC *)self.window.rootViewController;
-        [vc.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"updateiosdevice('%@');",token]];
-    });
-}
-
-
-//iOS10以下使用这个方法接收通知
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    
-    [UMessage didReceiveRemoteNotification:userInfo];
-    
-    NSLog(@"10一下::: === %@",userInfo);
-    
-    
-    
-    //        self.userInfo = userInfo;
-    //定制自定的的弹出框
-    if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
-    {
-        //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"标题"
-        //                                                            message:@"Test On ApplicationStateActive"
-        //                                                           delegate:self
-        //                                                  cancelButtonTitle:@"确定"
-        //                                                  otherButtonTitles:nil];
-        //
-        //        [alertView show];
-        
-    }
-}
-
-//iOS10新增：处理前台收到通知的代理方法
--(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler API_AVAILABLE(ios(10.0)){
-    NSDictionary * userInfo = notification.request.content.userInfo;
-    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        //应用处于前台时的远程推送接受
-        //关闭U-Push自带的弹出框
-        [UMessage setAutoAlert:NO];
-        //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
-        
-        [self goUrlWithDict:userInfo];
-        
-    }else{
-        //应用处于后台台时的本地推送接受
-    }
-    //当应用处于前台时提示设置，需要哪个可以设置哪一个
-    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
-}
-
-//iOS10新增：处理后台点击通知的代理方法
--(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler API_AVAILABLE(ios(10.0)){
-    NSDictionary * userInfo = response.notification.request.content.userInfo;
-    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        //应用处于前后台时的远程推送接受
-        [UMessage setAutoAlert:NO];
-        //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
-        
-        [self goUrlWithDict:userInfo];
-        
-    }else{
-        //应用处于后台时的本地推送接受
-        
-        
-        
-    }
-}
-
-
-- (void)goUrlWithDict:(NSDictionary *)dict {
-    
-    if ([dict.allKeys containsObject:@"ao"] && [[NSString stringWithFormat:@"%@",dict[@"ao"]] isEqualToString:@"go_url"]) {
-        
-        GGXXYYHomeVC * vc = (GGXXYYHomeVC *)self.window.rootViewController;
-        [vc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:dict[@"ul"]]]];
-        
-    }
-    
-}
+//- (void)initUment:(NSDictionary *)launchOptions{
+//    [UMessage startWithAppkey:UMKey launchOptions:launchOptions httpsEnable:YES];
+//    [UMessage registerForRemoteNotifications];
+//    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+//    center.delegate=self;
+//    UNAuthorizationOptions types10=UNAuthorizationOptionBadge|  UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
+//    [center requestAuthorizationWithOptions:types10     completionHandler:^(BOOL granted, NSError * _Nullable error) {
+//        if (granted) {
+//            //点击允许
+//            //这里可以添加一些自己的逻辑
+//        } else {
+//            //点击不允许
+//            //这里可以添加一些自己的逻辑
+//        }
+//    }];
+//    [UMessage setBadgeClear:NO];
+//    //打开日志，方便调试
+//    [UMessage setLogEnabled:YES];
+//}
+//
+//
+////在用户接受推送通知后系统会调用
+//-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+//{
+//    [UMessage registerDeviceToken:deviceToken];
+//    //2.获取到deviceToken
+//    NSString *token = [[[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]] stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    //将deviceToken给后台
+//    NSLog(@"send_token:%@",token);
+//    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"token"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//    //    [zkSignleTool shareTool].deviceToken = token;
+//    //    if ([zkSignleTool shareTool].isLogin) {
+//    //        [[zkSignleTool shareTool] uploadDeviceTokenWith:[zkSignleTool shareTool].deviceToken];
+//    //    }
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//         GGXXYYHomeVC* vc = (GGXXYYHomeVC *)self.window.rootViewController;
+//        [vc.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"updateiosdevice('%@');",token]];
+//    });
+//}
+//
+//
+////iOS10以下使用这个方法接收通知
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+//{
+//
+//    [UMessage didReceiveRemoteNotification:userInfo];
+//
+//    NSLog(@"10一下::: === %@",userInfo);
+//
+//
+//
+//    //        self.userInfo = userInfo;
+//    //定制自定的的弹出框
+//    if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+//    {
+//        //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"标题"
+//        //                                                            message:@"Test On ApplicationStateActive"
+//        //                                                           delegate:self
+//        //                                                  cancelButtonTitle:@"确定"
+//        //                                                  otherButtonTitles:nil];
+//        //
+//        //        [alertView show];
+//
+//    }
+//}
+//
+////iOS10新增：处理前台收到通知的代理方法
+//-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler API_AVAILABLE(ios(10.0)){
+//    NSDictionary * userInfo = notification.request.content.userInfo;
+//    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+//        //应用处于前台时的远程推送接受
+//        //关闭U-Push自带的弹出框
+//        [UMessage setAutoAlert:NO];
+//        //必须加这句代码
+//        [UMessage didReceiveRemoteNotification:userInfo];
+//
+//        [self goUrlWithDict:userInfo];
+//
+//    }else{
+//        //应用处于后台台时的本地推送接受
+//    }
+//    //当应用处于前台时提示设置，需要哪个可以设置哪一个
+//    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
+//}
+//
+////iOS10新增：处理后台点击通知的代理方法
+//-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler API_AVAILABLE(ios(10.0)){
+//    NSDictionary * userInfo = response.notification.request.content.userInfo;
+//    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+//        //应用处于前后台时的远程推送接受
+//        [UMessage setAutoAlert:NO];
+//        //必须加这句代码
+//        [UMessage didReceiveRemoteNotification:userInfo];
+//
+//        [self goUrlWithDict:userInfo];
+//
+//    }else{
+//        //应用处于后台时的本地推送接受
+//
+//
+//
+//    }
+//}
+//
+//
+//- (void)goUrlWithDict:(NSDictionary *)dict {
+//
+//    if ([dict.allKeys containsObject:@"ao"] && [[NSString stringWithFormat:@"%@",dict[@"ao"]] isEqualToString:@"go_url"]) {
+//
+//        GGXXYYHomeVC * vc = (GGXXYYHomeVC *)self.window.rootViewController;
+//        [vc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:dict[@"ul"]]]];
+//
+//    }
+//
+//}
 
 
 
 - (void)updateApp {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",@"1467161205"]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",@"1467704438"]];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     [request setHTTPMethod:@"POST"];
